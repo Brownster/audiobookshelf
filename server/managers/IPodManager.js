@@ -14,8 +14,12 @@ class IPodManager {
     form.append('file', fs.createReadStream(file.metadata.path))
 
     try {
+      const headers = form.getHeaders()
+      if (process.env.IPOD_DOCK_API_KEY) {
+        headers['Authorization'] = `Bearer ${process.env.IPOD_DOCK_API_KEY}`
+      }
       await axios.post(`http://${device.ip}:8000/upload/audiobook`, form, {
-        headers: form.getHeaders()
+        headers
       })
       res.sendStatus(200)
     } catch (error) {

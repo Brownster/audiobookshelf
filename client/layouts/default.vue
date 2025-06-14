@@ -345,6 +345,11 @@ export default {
 
       this.$store.commit('libraries/setEReaderDevices', data.ereaderDevices)
     },
+    ipodDevicesUpdated(data) {
+      if (!data?.ipodDevices) return
+
+      this.$store.commit('libraries/setIPodDevices', data.ipodDevices)
+    },
     customMetadataProviderAdded(provider) {
       if (!provider?.id) return
       this.$store.commit('scanners/addCustomMetadataProvider', provider)
@@ -430,6 +435,7 @@ export default {
 
       // EReader Device Listeners
       this.socket.on('ereader-devices-updated', this.ereaderDevicesUpdated)
+      this.socket.on('ipod-devices-updated', this.ipodDevicesUpdated)
 
       this.socket.on('backup_applied', this.backupApplied)
 

@@ -20,5 +20,5 @@ Check items off as they are completed.
 - [ ] User endpoint `/api/me/ipod-devices` and modal for editing devices
 - [ ] Admin configuration page `config/ipod.vue` and `IPodDeviceModal.vue`
 - [ ] "Send to iPod" actions on item pages and book cards
-- [ ] Add iPod strings to translation files
+- [x] Add iPod strings to translation files
 - [ ] Update OpenAPI docs and add unit tests

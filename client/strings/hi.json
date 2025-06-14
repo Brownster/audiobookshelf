@@ -84,11 +84,14 @@
   "HeaderAccount": "खाता",
   "HeaderAdvanced": "विकसित",
   "HeaderAppriseNotificationSettings": "Apprise अधिसूचना सेटिंग्स",
+  "HeaderIPodDevices": "iPod Devices",
   "LabelBackupsMaxBackupSize": "Maximum backup size (in GB)",
   "LabelFontFamily": "फुहारा परिवार",
   "LabelPodcastSearchRegion": "पॉडकास्ट खोज क्षेत्र",
   "LabelSettingsPreferMatchedMetadataHelp": "Matched data will overide item details when using Quick Match. By default Quick Match will only fill in missing details.",
   "MessageBookshelfNoResultsForFilter": "No Results for filter \"{0}: {1}\"",
+  "MessageIPodDevices": "Manage and configure the iPod devices available for sending files.",
   "NoteChangeRootPassword": "रूट user is the only user that can have an empty password",
+  "ToastNameIpRequired": "Name and IP address are required",
   "ToastSendEbookToDeviceFailed": "Failed to Send Ebook to device"
 }

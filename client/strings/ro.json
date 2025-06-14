@@ -1,1 +1,5 @@
-{}
+{
+  "HeaderIPodDevices": "iPod Devices",
+  "MessageIPodDevices": "Manage and configure the iPod devices available for sending files.",
+  "ToastNameIpRequired": "Name and IP address are required"
+}

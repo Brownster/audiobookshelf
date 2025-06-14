@@ -632,6 +632,37 @@
         }
       }
     },
+    "/api/me/ipod-devices": {
+      "post": {
+        "summary": "Update user iPod devices",
+        "operationId": "updateUserIPodDevices",
+        "tags": [
+          "IPod"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ipodDevices": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/IPodDevice"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "$ref": "#/components/responses/ipodDevices200" },
+          "400": { "description": "Invalid payload" }
+        }
+      }
+    },
     "/api/libraries": {
       "get": {
         "operationId": "getLibraries",
@@ -4164,6 +4195,24 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/IPodSettings"
+            }
+          }
+        }
+      },
+      "ipodDevices200": {
+        "description": "Successful response - IPod devices",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ipodDevices": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IPodDevice"
+                  }
+                }
+              }
             }
           }
         }

@@ -33,6 +33,8 @@ paths:
     $ref: './controllers/IPodController.yaml#/paths/~1api~1ipods~1settings'
   /api/ipods/send:
     $ref: './controllers/IPodController.yaml#/paths/~1api~1ipods~1send'
+  /api/me/ipod-devices:
+    $ref: './controllers/MeController.yaml#/paths/~1api~1me~1ipod-devices'
   /api/libraries:
     $ref: './controllers/LibraryController.yaml#/paths/~1api~1libraries'
   /api/libraries/{id}:

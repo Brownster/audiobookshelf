@@ -5,20 +5,20 @@ Check items off as they are completed.
 
 ## Backend implementation
 
-- [ ] `IPodSettings` object for storing device info
-- [ ] Database integration for `ipodSettings`
-- [ ] `IPodManager` uploads files to the Pi
-- [ ] `IPodController` with settings and send endpoints
-- [ ] API routes wired in `ApiRouter`
-- [ ] OpenAPI documentation for new endpoints
+- [x] `IPodSettings` object for storing device info
+- [x] Database integration for `ipodSettings`
+- [x] `IPodManager` uploads files to the Pi
+- [x] `IPodController` with settings and send endpoints
+- [x] API routes wired in `ApiRouter`
+- [x] OpenAPI documentation for new endpoints
 
 ## Frontend tasks
 
-- [ ] Expose `ipodDevices` on login and commit them to the store
-- [ ] Vuex state and mutations for `ipodDevices`
-- [ ] Listen for `ipod-devices-updated` socket events
-- [ ] User endpoint `/api/me/ipod-devices` and modal for editing devices
-- [ ] Admin configuration page `config/ipod.vue` and `IPodDeviceModal.vue`
-- [ ] "Send to iPod" actions on item pages and book cards
+- [x] Expose `ipodDevices` on login and commit them to the store
+- [x] Vuex state and mutations for `ipodDevices`
+- [x] Listen for `ipod-devices-updated` socket events
+- [x] User endpoint `/api/me/ipod-devices` and modal for editing devices
+- [x] Admin configuration page `config/ipod.vue` and `IPodDeviceModal.vue`
+- [x] "Send to iPod" actions on item pages and book cards
 - [x] Add iPod strings to translation files
 - [ ] Update OpenAPI docs and add unit tests

@@ -26,6 +26,7 @@ const PublicRouter = require('./routers/PublicRouter')
 
 const LogManager = require('./managers/LogManager')
 const EmailManager = require('./managers/EmailManager')
+const IPodManager = require('./managers/IPodManager')
 const AbMergeManager = require('./managers/AbMergeManager')
 const CacheManager = require('./managers/CacheManager')
 const BackupManager = require('./managers/BackupManager')
@@ -99,6 +100,7 @@ class Server {
 
     // Managers
     this.emailManager = new EmailManager()
+    this.ipodManager = new IPodManager()
     this.backupManager = new BackupManager()
     this.abMergeManager = new AbMergeManager()
     this.playbackSessionManager = new PlaybackSessionManager()

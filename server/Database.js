@@ -28,6 +28,8 @@ class Database {
     this.notificationSettings = null
     /** @type {import('./objects/settings/EmailSettings')} */
     this.emailSettings = null
+    /** @type {import('./objects/settings/IPodSettings')} */
+    this.ipodSettings = null
 
     this.supportsUnaccent = false
     this.supportsUnicodeFoldings = false
@@ -366,6 +368,7 @@ class Database {
     this.emailSettings = settingsData.emailSettings
     this.serverSettings = settingsData.serverSettings
     this.notificationSettings = settingsData.notificationSettings
+    this.ipodSettings = settingsData.ipodSettings
     global.ServerSettings = this.serverSettings.toJSON()
 
     // Version specific migrations

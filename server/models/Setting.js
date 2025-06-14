@@ -3,6 +3,7 @@ const { DataTypes, Model } = require('sequelize')
 const oldEmailSettings = require('../objects/settings/EmailSettings')
 const oldServerSettings = require('../objects/settings/ServerSettings')
 const oldNotificationSettings = require('../objects/settings/NotificationSettings')
+const oldIPodSettings = require('../objects/settings/IPodSettings')
 
 class Setting extends Model {
   constructor(values, options) {
@@ -24,12 +25,14 @@ class Setting extends Model {
     const emailSettingsJson = settings.find((se) => se.id === 'email-settings')
     const serverSettingsJson = settings.find((se) => se.id === 'server-settings')
     const notificationSettingsJson = settings.find((se) => se.id === 'notification-settings')
+    const ipodSettingsJson = settings.find((se) => se.id === 'ipod-settings')
 
     return {
       settings,
       emailSettings: new oldEmailSettings(emailSettingsJson),
       serverSettings: new oldServerSettings(serverSettingsJson),
-      notificationSettings: new oldNotificationSettings(notificationSettingsJson)
+      notificationSettings: new oldNotificationSettings(notificationSettingsJson),
+      ipodSettings: new oldIPodSettings(ipodSettingsJson)
     }
   }
 

@@ -1,0 +1,58 @@
+components:
+  responses:
+    ipodSettings200:
+      description: Successful response - IPod settings
+      content:
+        application/json:
+          schema:
+            $ref: '../objects/settings/IPodSettings.yaml#/components/schemas/IPodSettings'
+paths:
+  /api/ipods/settings:
+    get:
+      summary: Get iPod settings
+      operationId: getIPodSettings
+      tags:
+        - IPod
+      responses:
+        200:
+          $ref: '#/components/responses/ipodSettings200'
+    patch:
+      summary: Update iPod settings
+      operationId: updateIPodSettings
+      tags:
+        - IPod
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../objects/settings/IPodSettings.yaml#/components/schemas/IPodSettings'
+      responses:
+        200:
+          $ref: '#/components/responses/ipodSettings200'
+  /api/ipods/send:
+    post:
+      summary: Send file to iPod
+      operationId: sendToIPod
+      tags:
+        - IPod
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                libraryItemId:
+                  $ref: '../objects/LibraryItem.yaml#/components/schemas/libraryItemId'
+                deviceName:
+                  $ref: '../objects/settings/IPodSettings.yaml#/components/schemas/ipodName'
+      responses:
+        200:
+          description: Successful response
+        400:
+          description: Invalid request
+        403:
+          description: Forbidden
+        404:
+          description: Not found

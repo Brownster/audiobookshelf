@@ -40,6 +40,10 @@
     {
       "name": "Podcasts",
       "description": "Podcast endpoints"
+    },
+    {
+      "name": "IPod",
+      "description": "iPod endpoints"
     }
   ],
   "paths": {
@@ -529,6 +533,83 @@
                   },
                   "deviceName": {
                     "$ref": "#/components/schemas/ereaderName"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/ipods/settings": {
+      "get": {
+        "summary": "Get iPod settings",
+        "operationId": "getIPodSettings",
+        "tags": [
+          "IPod"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ipodSettings200"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update iPod settings",
+        "operationId": "updateIPodSettings",
+        "tags": [
+          "IPod"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IPodSettings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ipodSettings200"
+          }
+        }
+      }
+    },
+    "/api/ipods/send": {
+      "post": {
+        "summary": "Send file to iPod",
+        "operationId": "sendToIPod",
+        "tags": [
+          "IPod"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "libraryItemId": {
+                    "$ref": "#/components/schemas/libraryItemId"
+                  },
+                  "deviceName": {
+                    "$ref": "#/components/schemas/ipodName"
                   }
                 }
               }
@@ -2767,14 +2848,47 @@
             "description": "The default \"from\" email address for outgoing emails.",
             "nullable": true
           },
-          "ereaderDevices": {
+        "ereaderDevices": {
+          "type": "array",
+          "description": "List of configured e-reader devices.",
+          "items": {
+            "$ref": "#/components/schemas/EreaderDeviceObject"
+          }
+        }
+      },
+      "ipodName": {
+        "type": "string",
+        "description": "The name of the iPod device."
+      },
+      "IPodDevice": {
+        "type": "object",
+        "description": "A configured iPod sync device.",
+        "properties": {
+          "name": { "$ref": "#/components/schemas/ipodName" },
+          "ip": { "type": "string", "description": "IP address of the device." },
+          "availabilityOption": {
+            "type": "string",
+            "enum": ["adminOrUp", "userOrUp", "guestOrUp", "specificUsers"]
+          },
+          "users": {
             "type": "array",
-            "description": "List of configured e-reader devices.",
-            "items": {
-              "$ref": "#/components/schemas/EreaderDeviceObject"
-            }
+            "items": { "type": "string" }
           }
         },
+        "required": ["name", "ip", "availabilityOption"]
+      },
+      "IPodSettings": {
+        "type": "object",
+        "description": "Settings for configured iPod devices.",
+        "properties": {
+          "id": { "type": "string", "example": "ipod-settings" },
+          "ipodDevices": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/IPodDevice" }
+          }
+        },
+        "required": ["id", "ipodDevices"]
+      },
         "required": [
           "id",
           "port",
@@ -4040,6 +4154,16 @@
                   }
                 }
               }
+            }
+          }
+        }
+      },
+      "ipodSettings200": {
+        "description": "Successful response - IPod settings",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/IPodSettings"
             }
           }
         }

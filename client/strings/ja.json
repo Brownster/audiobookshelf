@@ -8,6 +8,7 @@
   "ButtonPrevious": "先",
   "ButtonRead": "野村",
   "ButtonYes": "はい",
+  "HeaderIPodDevices": "iPod Devices",
   "HeaderPlayerSettings": "プレーヤーの設定",
   "LabelBooks": "ほん",
   "LabelLanguage": "言語",
@@ -17,5 +18,7 @@
   "LabelNewPassword": "新しいのパスワード",
   "LabelPassword": "パスワード",
   "LabelPlaylists": "プレイリスト",
-  "LabelPodcast": "ポッドキャスト"
+  "LabelPodcast": "ポッドキャスト",
+  "MessageIPodDevices": "Manage and configure the iPod devices available for sending files.",
+  "ToastNameIpRequired": "Name and IP address are required"
 }

@@ -109,6 +109,7 @@
   "HeaderEreaderSettings": "ઇરીડર સેટિંગ્સ",
   "HeaderFiles": "ફાઇલો",
   "HeaderFindChapters": "પ્રકરણો શોધો",
+  "HeaderIPodDevices": "iPod Devices",
   "HeaderIgnoredFiles": "અવગણેલી ફાઇલો",
   "HeaderItemFiles": "વાસ્તુ ની ફાઈલો",
   "HeaderItemMetadataUtils": "વસ્તુ મેટાડેટા સાધનો",
@@ -163,5 +164,7 @@
   "LabelPodcastSearchRegion": "પોડકાસ્ટ શોધ પ્રદેશ",
   "LabelSettingsPreferMatchedMetadataHelp": "Matched data will overide item details when using Quick Match. By default Quick Match will only fill in missing details.",
   "MessageBookshelfNoResultsForFilter": "No Results for filter \"{0}: {1}\"",
+  "MessageIPodDevices": "Manage and configure the iPod devices available for sending files.",
+  "ToastNameIpRequired": "Name and IP address are required",
   "ToastSendEbookToDeviceFailed": "Failed to Send Ebook to device"
 }

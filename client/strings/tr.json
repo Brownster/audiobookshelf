@@ -118,6 +118,7 @@
   "HeaderEpisodes": "Bölümler",
   "HeaderEreaderSettings": "Ereader Ayarları",
   "HeaderFiles": "Dosyalar",
+  "HeaderIPodDevices": "iPod Devices",
   "HeaderIgnoredFiles": "Görmezden Gelinen Dosyalar",
   "HeaderItemFiles": "Öğe Dosyaları",
   "HeaderItemMetadataUtils": "Öğe Üstveri Araçları",
@@ -299,5 +300,7 @@
   "LabelYearReviewHide": "Yıla Bakışı Sakla",
   "LabelYearReviewShow": "Yıla Bakışı Göster",
   "LabelYourBookmarks": "Yer İşaretleriniz",
-  "LabelYourProgress": "Gelişiminiz"
+  "LabelYourProgress": "Gelişiminiz",
+  "MessageIPodDevices": "Manage and configure the iPod devices available for sending files.",
+  "ToastNameIpRequired": "Name and IP address are required"
 }

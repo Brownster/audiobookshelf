@@ -1,0 +1,36 @@
+components:
+  responses:
+    ipodDevices200:
+      description: Successful response - IPod devices
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              ipodDevices:
+                type: array
+                items:
+                  $ref: '../objects/settings/IPodSettings.yaml#/components/schemas/IPodDevice'
+paths:
+  /api/me/ipod-devices:
+    post:
+      summary: Update user iPod devices
+      operationId: updateUserIPodDevices
+      tags:
+        - IPod
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ipodDevices:
+                  type: array
+                  items:
+                    $ref: '../objects/settings/IPodSettings.yaml#/components/schemas/IPodDevice'
+      responses:
+        200:
+          $ref: '#/components/responses/ipodDevices200'
+        400:
+          description: Invalid payload

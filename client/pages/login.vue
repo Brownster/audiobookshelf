@@ -166,10 +166,11 @@ export default {
 
       location.reload()
     },
-    setUser({ user, userDefaultLibraryId, serverSettings, Source, ereaderDevices }) {
+    setUser({ user, userDefaultLibraryId, serverSettings, Source, ereaderDevices, ipodDevices }) {
       this.$store.commit('setServerSettings', serverSettings)
       this.$store.commit('setSource', Source)
       this.$store.commit('libraries/setEReaderDevices', ereaderDevices)
+      this.$store.commit('libraries/setIPodDevices', ipodDevices)
       this.$setServerLanguageCode(serverSettings.language)
 
       if (serverSettings.chromecastEnabled) {

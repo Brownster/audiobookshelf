@@ -940,6 +940,7 @@ class Auth {
       userDefaultLibraryId: user.getDefaultLibraryId(libraryIds),
       serverSettings: Database.serverSettings.toJSONForBrowser(),
       ereaderDevices: Database.emailSettings.getEReaderDevices(user),
+      ipodDevices: Database.ipodSettings.getIPodDevices(user),
       Source: global.Source
     }
   }

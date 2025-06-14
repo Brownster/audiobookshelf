@@ -447,6 +447,57 @@ class MeController {
   }
 
   /**
+   * POST: /api/me/ipod-devices
+   *
+   * @param {RequestWithUser} req
+   * @param {Response} res
+   */
+  async updateUserIPodDevices(req, res) {
+    if (!req.body.ipodDevices || !Array.isArray(req.body.ipodDevices)) {
+      return res.status(400).send('Invalid payload. ipodDevices array required')
+    }
+
+    const userIPodDevices = req.body.ipodDevices
+    for (const device of userIPodDevices) {
+      if (!device.name || !device.ip) {
+        return res.status(400).send('Invalid payload. ipodDevices array items must have name and ip')
+      } else if (device.availabilityOption !== 'specificUsers' || device.users?.length !== 1 || device.users[0] !== req.user.id) {
+        return res.status(400).send('Invalid payload. ipodDevices array items must have availabilityOption "specificUsers" and only the current user')
+      }
+    }
+
+    const otherDevices = Database.ipodSettings.ipodDevices.filter((device) => {
+      return !Database.ipodSettings.checkUserCanAccessDevice(device, req.user) || device.users?.length !== 1
+    })
+
+    const ipodDevices = otherDevices.concat(userIPodDevices)
+
+    const nameSet = new Set()
+    const hasDupes = ipodDevices.some((device) => {
+      if (nameSet.has(device.name)) {
+        return true
+      }
+      nameSet.add(device.name)
+      return false
+    })
+
+    if (hasDupes) {
+      return res.status(400).send('Invalid payload. Duplicate "name" field found.')
+    }
+
+    const updated = Database.ipodSettings.update({ ipodDevices })
+    if (updated) {
+      await Database.updateSetting(Database.ipodSettings)
+      SocketAuthority.clientEmitter(req.user.id, 'ipod-devices-updated', {
+        ipodDevices: Database.ipodSettings.ipodDevices
+      })
+    }
+    res.json({
+      ipodDevices: Database.ipodSettings.getIPodDevices(req.user)
+    })
+  }
+
+  /**
    * GET: /api/me/stats/year/:year
    *
    * @param {import('express').Request} req

@@ -527,6 +527,16 @@ export default {
             })
           })
         }
+        if (this.tracks.length && this.store.state.libraries.ipodDevices?.length) {
+          items.push({
+            text: this.$strings.LabelSendToIPod,
+            subitems: this.store.state.libraries.ipodDevices.map((d) => ({
+              text: d.name,
+              func: 'sendToIPod',
+              data: d.name
+            }))
+          })
+        }
       }
       if (this.userCanUpdate) {
         items.push({
@@ -787,6 +797,35 @@ export default {
               .catch((error) => {
                 console.error('Failed to send ebook to device', error)
                 this.$toast.error(this.$strings.ToastSendEbookToDeviceFailed)
+              })
+              .finally(() => {
+                this.processing = false
+              })
+          }
+        },
+        type: 'yesNo'
+      }
+      this.store.commit('globals/setConfirmPrompt', payload)
+    },
+    sendToIPod(deviceName) {
+      const payload = {
+        message: this.$getString('MessageConfirmSendToIPod', [this.title, deviceName]),
+        callback: (confirmed) => {
+          if (confirmed) {
+            const payload = {
+              libraryItemId: this.libraryItemId,
+              deviceName
+            }
+            const axios = this.$axios || this.$nuxt.$axios
+            this.processing = true
+            axios
+              .$post('/api/ipods/send', payload)
+              .then(() => {
+                this.$toast.success(this.$getString('ToastSendToIPodSuccess', [deviceName]))
+              })
+              .catch((error) => {
+                console.error('Failed to send to ipod device', error)
+                this.$toast.error(this.$strings.ToastSendToIPodFailed)
               })
               .finally(() => {
                 this.processing = false

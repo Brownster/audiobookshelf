@@ -416,6 +416,17 @@ export default {
         })
       }
 
+      if (!this.isPodcast && this.tracks.length && this.$store.state.libraries.ipodDevices?.length) {
+        items.push({
+          text: this.$strings.LabelSendToIPod,
+          subitems: this.$store.state.libraries.ipodDevices.map((d) => ({
+            text: d.name,
+            action: 'sendToIPod',
+            data: d.name
+          }))
+        })
+      }
+
       if (this.userIsAdminOrUp && !this.isPodcast && this.tracks.length) {
         items.push({
           text: this.$strings.LabelShare,
@@ -756,6 +767,34 @@ export default {
       }
       this.$store.commit('globals/setConfirmPrompt', payload)
     },
+    sendToIPod(deviceName) {
+      const payload = {
+        message: this.$getString('MessageConfirmSendToIPod', [this.title, deviceName]),
+        callback: (confirmed) => {
+          if (confirmed) {
+            const payload = {
+              libraryItemId: this.libraryItemId,
+              deviceName
+            }
+            this.processing = true
+            this.$axios
+              .$post('/api/ipods/send', payload)
+              .then(() => {
+                this.$toast.success(this.$getString('ToastSendToIPodSuccess', [deviceName]))
+              })
+              .catch((error) => {
+                console.error('Failed to send to ipod device', error)
+                this.$toast.error(this.$strings.ToastSendToIPodFailed)
+              })
+              .finally(() => {
+                this.processing = false
+              })
+          }
+        },
+        type: 'yesNo'
+      }
+      this.$store.commit('globals/setConfirmPrompt', payload)
+    },
     contextMenuAction({ action, data }) {
       if (action === 'collections') {
         this.$store.commit('setSelectedLibraryItem', this.libraryItem)
@@ -773,6 +812,8 @@ export default {
         this.deleteLibraryItem()
       } else if (action === 'sendToDevice') {
         this.sendToDevice(data)
+      } else if (action === 'sendToIPod') {
+        this.sendToIPod(data)
       } else if (action === 'share') {
         this.$store.commit('setSelectedLibraryItem', this.libraryItem)
         this.$store.commit('globals/setShareModal', this.mediaItemShare)

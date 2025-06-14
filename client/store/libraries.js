@@ -12,7 +12,8 @@ export const state = () => ({
   numUserPlaylists: 0,
   collections: [],
   userPlaylists: [],
-  ereaderDevices: []
+  ereaderDevices: [],
+  ipodDevices: []
 })
 
 export const getters = {
@@ -357,5 +358,8 @@ export const mutations = {
   },
   setEReaderDevices(state, ereaderDevices) {
     state.ereaderDevices = ereaderDevices
+  },
+  setIPodDevices(state, ipodDevices) {
+    state.ipodDevices = ipodDevices
   }
 }

@@ -658,8 +658,12 @@
           }
         },
         "responses": {
-          "200": { "$ref": "#/components/responses/ipodDevices200" },
-          "400": { "description": "Invalid payload" }
+          "200": {
+            "$ref": "#/components/responses/ipodDevices200"
+          },
+          "400": {
+            "description": "Invalid payload"
+          }
         }
       }
     },
@@ -2879,13 +2883,20 @@
             "description": "The default \"from\" email address for outgoing emails.",
             "nullable": true
           },
-        "ereaderDevices": {
-          "type": "array",
-          "description": "List of configured e-reader devices.",
-          "items": {
-            "$ref": "#/components/schemas/EreaderDeviceObject"
+          "ereaderDevices": {
+            "type": "array",
+            "description": "List of configured e-reader devices.",
+            "items": {
+              "$ref": "#/components/schemas/EreaderDeviceObject"
+            }
           }
-        }
+        },
+        "required": [
+          "id",
+          "port",
+          "secure",
+          "ereaderDevices"
+        ]
       },
       "ipodName": {
         "type": "string",
@@ -2895,36 +2906,53 @@
         "type": "object",
         "description": "A configured iPod sync device.",
         "properties": {
-          "name": { "$ref": "#/components/schemas/ipodName" },
-          "ip": { "type": "string", "description": "IP address of the device." },
+          "name": {
+            "$ref": "#/components/schemas/ipodName"
+          },
+          "ip": {
+            "type": "string",
+            "description": "IP address of the device."
+          },
           "availabilityOption": {
             "type": "string",
-            "enum": ["adminOrUp", "userOrUp", "guestOrUp", "specificUsers"]
+            "enum": [
+              "adminOrUp",
+              "userOrUp",
+              "guestOrUp",
+              "specificUsers"
+            ]
           },
           "users": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           }
         },
-        "required": ["name", "ip", "availabilityOption"]
+        "required": [
+          "name",
+          "ip",
+          "availabilityOption"
+        ]
       },
       "IPodSettings": {
         "type": "object",
         "description": "Settings for configured iPod devices.",
         "properties": {
-          "id": { "type": "string", "example": "ipod-settings" },
+          "id": {
+            "type": "string",
+            "example": "ipod-settings"
+          },
           "ipodDevices": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/IPodDevice" }
+            "items": {
+              "$ref": "#/components/schemas/IPodDevice"
+            }
           }
         },
-        "required": ["id", "ipodDevices"]
-      },
         "required": [
           "id",
-          "port",
-          "secure",
-          "ereaderDevices"
+          "ipodDevices"
         ]
       },
       "libraryName": {

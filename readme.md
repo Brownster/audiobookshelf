@@ -35,6 +35,7 @@ Audiobookshelf is a self-hosted audiobook and podcast server.
 - Basic ebook support and ereader
   - Epub, pdf, cbr, cbz
   - Send ebook to device (i.e. Kindle)
+- send audio book to ipod (Raspberry Pi running https://github.com/Brownster/ipod-dock connected to an iPod Classic via usb. /Brownster/ipod-dock exposes api to upload and managed files the pi manages the syncing to the ipod)
 - Open RSS feeds for podcasts and audiobooks
 
 Is there a feature you are looking for? [Suggest it](https://github.com/advplyr/audiobookshelf/issues/new/choose)

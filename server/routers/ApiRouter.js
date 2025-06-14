@@ -26,6 +26,7 @@ const SessionController = require('../controllers/SessionController')
 const PodcastController = require('../controllers/PodcastController')
 const NotificationController = require('../controllers/NotificationController')
 const EmailController = require('../controllers/EmailController')
+const IPodController = require('../controllers/IPodController')
 const SearchController = require('../controllers/SearchController')
 const CacheController = require('../controllers/CacheController')
 const ToolsController = require('../controllers/ToolsController')
@@ -53,6 +54,8 @@ class ApiRouter {
     this.cronManager = Server.cronManager
     /** @type {import('../managers/EmailManager')} */
     this.emailManager = Server.emailManager
+    /** @type {import('../managers/IPodManager')} */
+    this.ipodManager = Server.ipodManager
     this.apiCacheManager = Server.apiCacheManager
 
     this.router = express()
@@ -273,6 +276,13 @@ class ApiRouter {
     this.router.post('/emails/test', EmailController.adminMiddleware.bind(this), EmailController.sendTest.bind(this))
     this.router.post('/emails/ereader-devices', EmailController.adminMiddleware.bind(this), EmailController.updateEReaderDevices.bind(this))
     this.router.post('/emails/send-ebook-to-device', EmailController.sendEBookToDevice.bind(this))
+
+    //
+    // iPod Routes (Admin and up for settings)
+    //
+    this.router.get('/ipods/settings', IPodController.adminMiddleware.bind(this), IPodController.getSettings.bind(this))
+    this.router.patch('/ipods/settings', IPodController.adminMiddleware.bind(this), IPodController.updateSettings.bind(this))
+    this.router.post('/ipods/send', IPodController.send.bind(this))
 
     //
     // Search Routes

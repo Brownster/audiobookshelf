@@ -29,6 +29,10 @@ paths:
     $ref: './controllers/EmailController.yaml#/paths/~1api~1emails~1ereader-devices'
   /api/emails/send-ebook-to-device:
     $ref: './controllers/EmailController.yaml#/paths/~1api~1emails~1send-ebook-to-device'
+  /api/ipods/settings:
+    $ref: './controllers/IPodController.yaml#/paths/~1api~1ipods~1settings'
+  /api/ipods/send:
+    $ref: './controllers/IPodController.yaml#/paths/~1api~1ipods~1send'
   /api/libraries:
     $ref: './controllers/LibraryController.yaml#/paths/~1api~1libraries'
   /api/libraries/{id}:
@@ -90,3 +94,5 @@ tags:
     description: Notifications endpoints
   - name: Podcasts
     description: Podcast endpoints
+  - name: IPod
+    description: iPod endpoints

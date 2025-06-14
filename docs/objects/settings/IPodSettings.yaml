@@ -1,0 +1,39 @@
+components:
+  schemas:
+    ipodName:
+      type: string
+      description: The name of the iPod device.
+    IPodDevice:
+      type: object
+      description: A configured iPod sync device.
+      properties:
+        name:
+          $ref: '#/components/schemas/ipodName'
+        ip:
+          type: string
+          description: IP address of the device.
+        availabilityOption:
+          type: string
+          enum: ['adminOrUp', 'userOrUp', 'guestOrUp', 'specificUsers']
+        users:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+        - ip
+        - availabilityOption
+    IPodSettings:
+      type: object
+      description: Settings for configured iPod devices.
+      properties:
+        id:
+          type: string
+          example: ipod-settings
+        ipodDevices:
+          type: array
+          items:
+            $ref: '#/components/schemas/IPodDevice'
+      required:
+        - id
+        - ipodDevices
